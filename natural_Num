@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First N Natural Numbers</title>
+    <style>
+        body 
+        {
+            min-height: 100%;
+            background-attachment: fixed;
+            background-image: url(images/background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #4C1D3D;
+            color: #d800cc;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 
+        {
+            color: #d800cc;
+            font-size: 2.5em;
+        }
+        .container 
+        {
+            margin-top: 40px;
+        }
+        .form-group 
+        {
+            margin: 15px;
+            color: #d800cc;
+        }
+        input, select, button 
+        {
+            width: 220px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #f878f8;
+            background-color: #9878f8;
+            color: #d800cc;
+        }
+        button:hover 
+        {
+            background-color: #f8d8f8;
+            cursor: pointer;
+        }
+        .result 
+        {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #6844fc;
+        }
+        footer 
+        {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #d800cc;
+        }
+        .home 
+        {
+            padding: 10px 20px;
+            background-color: #9878f8;
+            border: 2px solid #f878f8;
+            border-radius: 5px;
+            color: #d800cc;
+            text-decoration: none;
+        }
+        .home:hover 
+        {
+            background-color: #f8d8f8;
+            color: #d800cc;
+        }
+    </style>
+</head>
+<body>
+    <h2>First N Natural Numbers</h2>
+
+    <div class="container">
+        <div class="form-group">
+            <input type="number" id="nValue" placeholder="Enter N">
+        </div>
+        <div class="form-group">
+            <select id="operation">
+                <option value="factorial">Factorial</option>
+                <option value="sum">Sum</option>
+                <option value="average">Average</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button onclick="calculate()">Calculate</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+    <footer>
+        <a href="index.html" class="home">Return to Home</a>
+    </footer>
+    <script>
+        function calculate() 
+        {
+            const n = parseInt(document.getElementById("nValue").value);
+            const operation = document.getElementById("operation").value;
+            let result = 0;
+
+            if (isNaN(n) || n <= 0) 
+            {
+                document.getElementById("result").innerText = "Please enter a positive number for N.";
+                return;
+            }
+            switch (operation) 
+            {
+                case "factorial":
+                    result = 1;
+                    for (let i = 1; i <= n; i++) 
+                    {
+                        result *= i;
+                    }
+                    document.getElementById("result").innerText = `Factorial of ${n} is ${result}.`;
+                    break;
+                case "sum":
+                    let sum = 0;
+                    let i = 1;
+                    do 
+                    {
+                        sum += i;
+                        i++;
+                    } 
+                    while (i <= n);
+                    document.getElementById("result").innerText = `Sum of first ${n} natural numbers is ${sum}.`;
+                    break;
+                case "average":
+                    let total = 0;
+                    for (let i = 1; i <= n; i++) 
+                    {
+                        total += i;
+                    }
+                    result = total / n;
+                    document.getElementById("result").innerText = `Average of first ${n} natural numbers is ${result.toFixed(2)}.`;
+                    break;
+                default:
+                    document.getElementById("result").innerText = "Invalid operation selected.";
+            }
+        }
+    </script>
+</body>
+</html>
